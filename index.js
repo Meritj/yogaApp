@@ -109,7 +109,7 @@ const utils = {
         document.querySelector('.btn-container').innerHTML = btn
     },
     handleEventMinutes: function () {
-        document.querySelectorAll('input[type="number"]').forEach((input) => { // pour chacun des input de type number qu'on appelle number dans le parametre
+        document.querySelectorAll('input[type="number"]').forEach((input) => { 
             input.addEventListener('input', (e) => {
                 exerciceArray.map((exo) => {
 
@@ -129,7 +129,7 @@ const utils = {
                 let position = 0;
                 exerciceArray.map((exo) => {
                     if (exo.pic == e.target.dataset.pic && position != 0) {
-                        [exerciceArray[position], exerciceArray[position - 1]] = [exerciceArray[position - 1], exerciceArray[position]]; // ici on intervertie les valeurs
+                        [exerciceArray[position], exerciceArray[position - 1]] = [exerciceArray[position - 1], exerciceArray[position]]; 
                         page.lobby() // ici on actualise la page
                         this.store()
                     } else {
@@ -163,8 +163,7 @@ const utils = {
     },
 
     store: function () {
-        localStorage.exercices = JSON.stringify(exerciceArray); // cette fonction permet de stocker dans le navigateur, a quque fois que l'array évolue il faut stocker : on le met dans les autres fonctions utils
-    }
+        localStorage.exercices = JSON.stringify(exerciceArray);
 };
 
 
@@ -187,14 +186,14 @@ const page = {
             )
             .join("");
 
-        utils.pageContent( // ici en paramètre on met tout ce qui suit :
+        utils.pageContent( 
             "Paramétrage <i id='reboot' class='fas fa-undo'></i>",
             "<ul>" + mapArray + "</ul>",
             "<button id='start'>Commencer<i class='far fa-play-circle'></i></button>");
         utils.handleEventMinutes();
         utils.handleEventArrow();
         utils.deleteItem();
-        reboot.addEventListener('click', () => utils.reboot()) //il reconnait grace au id de reboot
+        reboot.addEventListener('click', () => utils.reboot()) 
         start.addEventListener('click', ()=>this.routine());
     },
 
